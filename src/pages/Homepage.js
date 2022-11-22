@@ -7,6 +7,7 @@ export default function Homepage() {
   const [error, setError] = useState(null);
   const [recipe, setRecipe] = useState([]);
   const [showAll, setShowAll] = useState(false);
+  const [favourites, setFavourites] = useState(false);
 
   useEffect(() => {
     axios
@@ -17,6 +18,14 @@ export default function Homepage() {
 
   const filterType = (category) => {
     setRecipe(
+      recipe.filter((el) => {
+        return el.attributes.category === category;
+      })
+    );
+  };
+
+  const filterFavourites = (category) => {
+    setFavourites(
       recipe.filter((el) => {
         return el.attributes.category === category;
       })
@@ -35,7 +44,7 @@ export default function Homepage() {
       <button onClick={() => filterType("tészta")}>Tészta</button>
       <button onClick={() => filterType("indiai")}>Indiai</button>
       <button onClick={() => filterType("desszert")}>Desszert</button>
-      <button onClick={() => filterType("kedvencek")}>Kedvencek</button>
+      <button onClick={() => filterFavourites(!favourites)}>Kedvencek</button>
       <button>
         <a href="http://localhost:1337/admin" target="_blank" rel="noreferrer">
           New
