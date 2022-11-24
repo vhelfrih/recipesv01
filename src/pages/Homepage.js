@@ -11,7 +11,13 @@ export default function Homepage() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:1337/api/recepts")
+      .get(
+        `${
+          process.env.REACT_APP_BACKEND || "http://localhost:1337/"
+        }api/recepts`
+      )
+      // .get(`${process.env.REACT_APP_BACKEND}api/recepts`)
+      // .get("http://localhost:1337/api/recepts")
       .then(({ data }) => setRecipe(data.data))
       .catch((error) => setError(error));
   }, [showAll]);
