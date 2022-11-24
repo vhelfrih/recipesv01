@@ -13,7 +13,7 @@ export default function Homepage() {
     axios
       .get(
         `${
-          process.env.REACT_APP_BACKEND || "http://localhost:1337/"
+          process.env.CLIENT_FRONTEND_URL || "http://localhost:1337/"
         }api/recepts`
       )
       // .get(`${process.env.REACT_APP_BACKEND}api/recepts`)
